@@ -1,0 +1,9 @@
+{
+  "name": "Hackathon dev container (image build)",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" },
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" },
+    "ghcr.io/devcontainers/features/azure-cli:1": {}
+  }
+}

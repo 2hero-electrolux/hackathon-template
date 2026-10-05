@@ -1,12 +1,7 @@
 {
   "name": "Electrolux Business Growth Hackathon",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "ghcr.io/2hero-electrolux/hackathon-devcontainer:latest",
   "hostRequirements": { "cpus": 4, "memory": "16gb", "storage": "32gb" },
-  "features": {
-    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" },
-    "ghcr.io/devcontainers/features/node:1": { "version": "22" },
-    "ghcr.io/devcontainers/features/azure-cli:1": {}
-  },
   "customizations": {
     "vscode": {
       "extensions": ["GitHub.copilot", "GitHub.copilot-chat", "ms-python.python"]

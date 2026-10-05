@@ -1,0 +1,30 @@
+# Builds the dev container's tools (.devcontainer/image) into one image, so a Codespace in any repo
+# generated from this template pulls it instead of installing features at create time (~7 min).
+# The image holds generic tools only; nothing customer-specific belongs in it.
+name: dev container image
+on:
+  push:
+    branches: [main]
+    paths: [".devcontainer/image/**", ".github/workflows/devcontainer-image.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+jobs:
+  build:
+    if: github.repository == '2hero-electrolux/hackathon-template'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: devcontainers/ci@v0.3
+        with:
+          subFolder: .devcontainer/image
+          configFile: .devcontainer/image/devcontainer.json
+          imageName: ghcr.io/2hero-electrolux/hackathon-devcontainer
+          imageTag: latest
+          push: always
