@@ -1,11 +1,23 @@
 {
   "name": "Electrolux Business Growth Hackathon",
-  "image": "ghcr.io/2hero-electrolux/hackathon-devcontainer:latest",
-  "hostRequirements": { "cpus": 4, "memory": "16gb", "storage": "32gb" },
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "32gb"
+  },
   "customizations": {
     "vscode": {
-      "extensions": ["GitHub.copilot", "GitHub.copilot-chat", "ms-python.python"]
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-python.python"
+      ]
     }
   },
-  "postCreateCommand": "echo 'Hackathon codespace ready'"
+  "postCreateCommand": "sudo rm -f /etc/apt/sources.list.d/yarn.list && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && sudo apt-get install -y poppler-utils && echo '\u2713 Hackathon codespace ready'",
+  "postStartCommand": "command -v az >/dev/null && command -v pdftotext >/dev/null || (sudo rm -f /etc/apt/sources.list.d/yarn.list && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && sudo apt-get install -y poppler-utils)",
+  "containerEnv": {
+    "OPENROUTER_BASE_URL": "https://openrouter.ai/api/v1"
+  }
 }
