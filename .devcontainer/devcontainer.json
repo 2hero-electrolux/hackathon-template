@@ -15,9 +15,10 @@
       ]
     }
   },
-  "postCreateCommand": "sudo rm -f /etc/apt/sources.list.d/yarn.list && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && sudo apt-get install -y poppler-utils && echo '\u2713 Hackathon codespace ready'",
-  "postStartCommand": "command -v az >/dev/null && command -v pdftotext >/dev/null || (sudo rm -f /etc/apt/sources.list.d/yarn.list && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash && sudo apt-get install -y poppler-utils)",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "command -v gcloud >/dev/null && command -v pdftotext >/dev/null || bash .devcontainer/setup.sh",
   "containerEnv": {
-    "OPENROUTER_BASE_URL": "https://openrouter.ai/api/v1"
+    "OPENROUTER_BASE_URL": "https://openrouter.ai/api/v1",
+    "CLOUDSDK_CORE_PROJECT": "tohero-elx-hackathon"
   }
 }
